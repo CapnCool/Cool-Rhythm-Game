@@ -195,7 +195,7 @@ def game_loop(level: int):
     clock = pygame.time.Clock()
     start_time = pygame.time.get_ticks()
     run = True
-    songs = ['moonlight_sonata', 'solitude']
+    songs = ['moonlight_sonata', 'solitude', 'demons_on_the_beach']
 
     play_song(songs[level - 1])
     while run:
@@ -259,18 +259,22 @@ def main_menu():
         WINDOW.blit(header_font.render('COOL RHYTHM GAME', True, (0, 255, 0)), (WIDTH // 2 - 300, 100))
 
         WINDOW.blit(button_font.render('PLAY', True, (0, 255, 0)), (WIDTH // 2 - 100, 300))
-
+        WINDOW.blit(button_font.render('CREDITS', True, (0, 255, 0)), (WIDTH // 2 - 100, 375))
 
 
         mx, my = pygame.mouse.get_pos()
 
 
         start_button = pygame.Rect(WIDTH // 2 - 100, 300, 200, 50)
-        # credits_button = pygame.Rect(WIDTH // 2 - 100, 375, 200, 50)
+        credits_button = pygame.Rect(WIDTH // 2 - 100, 375, 200, 50)
 
         if start_button.collidepoint((mx, my)):
             if click:
                 levels()
+        if credits_button.collidepoint((mx, my)):
+            if click:
+                credits()
+
 
         pygame.draw.rect(WINDOW, (0, 0, 0), start_button)
 
@@ -295,23 +299,35 @@ def levels():
 
         one_button = pygame.Rect(WIDTH // 2 - 100, 300, 200, 50)
         two_button = pygame.Rect(WIDTH // 2 - 100, 375, 200, 50)
+        three_button = pygame.Rect(WIDTH // 2 - 100, 450, 200, 50)
 
         if one_button.collidepoint((mx, my)):
             if click:
                 game_loop(1)
+                score = 0
         if two_button.collidepoint((mx, my)):
             if click:
                 game_loop(2)
+                score = 0
+        if three_button.collidepoint((mx, my)):
+            if click:
+                game_loop(3)
+                score = 0
 
         WINDOW.blit(header_font.render('LEVELS', True, (0, 255, 0)), (WIDTH // 2 - 115, 100))
 
         pygame.draw.rect(WINDOW, (0, 0, 0), one_button)
         pygame.draw.rect(WINDOW, (0, 0, 0), two_button)
+        pygame.draw.rect(WINDOW, (0, 0, 0), three_button)
 
         WINDOW.blit(button_font.render('LEVEL 1', True, (0, 255, 0)), (WIDTH // 2 - 75, 300))
         WINDOW.blit(button_font.render('LEVEL 2', True, (0, 255, 0)), (WIDTH // 2 - 75, 375))
+        WINDOW.blit(button_font.render('LEVEL 3', True, (0, 255, 0)), (WIDTH // 2 - 75, 450))
 
         pygame.display.update()
+
+def credits():
+    pass
 
 
 if __name__ == '__main__':
