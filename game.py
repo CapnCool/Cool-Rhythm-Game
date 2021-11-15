@@ -258,10 +258,6 @@ def main_menu():
         WINDOW.fill(BLACK)
         WINDOW.blit(header_font.render('COOL RHYTHM GAME', True, (0, 255, 0)), (WIDTH // 2 - 300, 100))
 
-        WINDOW.blit(button_font.render('PLAY', True, (0, 255, 0)), (WIDTH // 2 - 100, 300))
-        WINDOW.blit(button_font.render('CREDITS', True, (0, 255, 0)), (WIDTH // 2 - 100, 375))
-
-
         mx, my = pygame.mouse.get_pos()
 
 
@@ -277,8 +273,10 @@ def main_menu():
 
 
         pygame.draw.rect(WINDOW, (0, 0, 0), start_button)
+        pygame.draw.rect(WINDOW, (0, 0, 0), credits_button)
 
         WINDOW.blit(button_font.render('PLAY', True, (0, 255, 0)), (WIDTH // 2 - 75, 300))
+        WINDOW.blit(button_font.render('CREDITS', True, (0, 255, 0)), (WIDTH // 2 - 100, 375))
 
         pygame.display.update()
 
@@ -327,7 +325,17 @@ def levels():
         pygame.display.update()
 
 def credits():
-    pass
+    credits = True
+    while credits:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                credits = False
+
+        WINDOW.fill(BLACK)
+        WINDOW.blit(button_font.render('MUSIC', True, (WHITE)), (10, 100))
+        WINDOW.blit(score_font.render('Primal Light - http://primallightmusic.bandcamp.com/releases', True, (WHITE)), (10, 175))
+        pygame.display.update()
+
 
 
 if __name__ == '__main__':
